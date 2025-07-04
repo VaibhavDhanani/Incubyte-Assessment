@@ -14,10 +14,26 @@ class StringCalculator:
 
         delimiter = ","
         if numbers.startswith("//"):
-            delimiter = numbers[2]
-            numbers = numbers[3:]
-
+            i = 2
+            temp_delimiter = ""
+            
+            if numbers[i] == "[":
+                i += 1
+                while i < len(numbers) and numbers[i] != "]":
+                    temp_delimiter += numbers[i]
+                    i += 1
+                delimiter = temp_delimiter
+            else:
+                while i < len(numbers) and numbers[i] != "\n":
+                    temp_delimiter += numbers[i]
+                    i += 1
+                delimiter = temp_delimiter
+                
+            numbers = numbers[i+1:]
+                
         numbers = numbers.replace("\n", delimiter)
+
+        
         num = 0
         negative_numbers = []
         for i in numbers.split(delimiter):
