@@ -10,3 +10,6 @@ def string_calculator():
 def test_add_empty_string(string_calculator):
     assert string_calculator.add("") == 0
     
+def test_add_single_number(string_calculator):
+    assert string_calculator.add("2") == 2
+    
