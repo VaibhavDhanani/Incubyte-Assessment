@@ -70,3 +70,9 @@ def test_add_number_gt_1000_ignore(string_calculator):
     assert string_calculator.add("1,2,1000") == 1003
     assert string_calculator.add("1000,1000") == 2000
     
+    
+def test_add_any_length_of_delimiter(string_calculator):
+    assert string_calculator.add("//[***]\n1***2***3") == 6
+    assert string_calculator.add("//[####]\n1####2####3####4") == 10
+    assert string_calculator.add("//[@@]\n1@@2@@3@@4@@6") == 16
+    
