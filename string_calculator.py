@@ -5,6 +5,7 @@ class StringCalculator:
         if not numbers:
             return 0
         
+        numbers = numbers.replace("\n", ",")
         num = 0
         for i in numbers.split(","):
             num += int(i)
