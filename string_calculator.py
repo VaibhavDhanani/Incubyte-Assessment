@@ -15,5 +15,7 @@ class StringCalculator:
         for i in numbers.split(delimiter):
             if i:
                 num += int(i)
+                if int(i) < 0:
+                    raise ValueError("negatives not allowed")
         
         return num
