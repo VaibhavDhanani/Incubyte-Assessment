@@ -8,6 +8,7 @@ class StringCalculator:
         numbers = numbers.replace("\n", ",")
         num = 0
         for i in numbers.split(","):
-            num += int(i)
+            if i:
+                num += int(i)
         
         return num
