@@ -1,3 +1,4 @@
+import re
 from string_calculator import StringCalculator
 import pytest
 
@@ -47,8 +48,8 @@ def test_add_handling_negative_number(string_calculator):
         
         
 def test_add_handling_multiple_negative_numbers(string_calculator):
-    with pytest.raises(ValueError,match="negatives not allowed : [-2, -3]"):
+    with pytest.raises(ValueError,match=re.escape("negatives not allowed : [-2, -3]")):
         string_calculator.add("1,-2,-3")
         
-    with pytest.raises(ValueError,match="negatives not allowed : [-2, -4, -5]"):
+    with pytest.raises(ValueError,match=re.escape("negatives not allowed : [-2, -4, -5]")):
         string_calculator.add("//;\n\n1;-2;3\n\n\n-4\n-5")
