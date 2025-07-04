@@ -63,3 +63,10 @@ def test_add_counting_times_method_called(string_calculator):
     string_calculator.add("1")
     assert string_calculator.get_called_count() == 4
     
+    
+    
+def test_add_number_gt_1000_ignore(string_calculator):
+    assert string_calculator.add("1,2,1001") == 3
+    assert string_calculator.add("1,2,1000") == 1003
+    assert string_calculator.add("1000,1000") == 2000
+    
