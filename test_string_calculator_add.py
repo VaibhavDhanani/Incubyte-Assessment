@@ -81,3 +81,9 @@ def test_add_multiple_delimiters(string_calculator):
     assert string_calculator.add("//[*][%]\n1*2%3*4%5") == 15
     assert string_calculator.add("//[*][%][#]\n1*2%3*4%5\n5#6") == 26
     
+    
+def test_add_multiple_delimiters_of_any_length(string_calculator):
+    assert string_calculator.add("//[**][%%]\n1**2%%3") == 6
+    assert string_calculator.add("//[**][%%][##]\n1**2%%3") == 6
+    assert string_calculator.add("//[*^^][%%]\n1*^^2%%3") == 6
+    
