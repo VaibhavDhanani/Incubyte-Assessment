@@ -53,3 +53,13 @@ def test_add_handling_multiple_negative_numbers(string_calculator):
         
     with pytest.raises(ValueError,match=re.escape("negatives not allowed : [-2, -4, -5]")):
         string_calculator.add("//;\n\n1;-2;3\n\n\n-4\n-5")
+        
+        
+def test_add_counting_times_method_called(string_calculator):
+    string_calculator.add("1,2,3")
+    assert string_calculator.get_called_count() == 1
+    string_calculator.add("1,2,3,4")
+    string_calculator.add("1,2,3,5")
+    string_calculator.add("1")
+    assert string_calculator.get_called_count() == 4
+    
