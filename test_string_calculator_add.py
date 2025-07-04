@@ -7,12 +7,13 @@ def string_calculator():
     return StringCalculator()
 
 
-
 def test_add_empty_string(string_calculator):
     assert string_calculator.add("") == 0
+
     
 def test_add_single_number(string_calculator):
     assert string_calculator.add("2") == 2
+    assert string_calculator.add("0") == 0
     
     
 def test_add_two_or_three_numbers(string_calculator):
@@ -46,7 +47,6 @@ def test_add_handling_negative_number(string_calculator):
         string_calculator.add("//;\n\n1;2;3\n\n\n-4\n5")
         
         
-        
 def test_add_handling_multiple_negative_numbers(string_calculator):
     with pytest.raises(ValueError,match=re.escape("negatives not allowed : [-2, -3]")):
         string_calculator.add("1,-2,-3")
@@ -57,12 +57,12 @@ def test_add_handling_multiple_negative_numbers(string_calculator):
         
 def test_add_counting_times_method_called(string_calculator):
     string_calculator.add("1,2,3")
-    assert string_calculator.get_called_count() == 1
+    assert string_calculator.get_add_called_count() == 1
     string_calculator.add("1,2,3,4")
     string_calculator.add("1,2,3,5")
     string_calculator.add("1")
-    assert string_calculator.get_called_count() == 4
-    
+    string_calculator.add("")
+    assert string_calculator.get_add_called_count() == 5
     
     
 def test_add_number_gt_1000_ignore(string_calculator):
@@ -75,6 +75,7 @@ def test_add_any_length_of_delimiter(string_calculator):
     assert string_calculator.add("//[***]\n1***2***3") == 6
     assert string_calculator.add("//[####]\n1####2####3####4") == 10
     assert string_calculator.add("//[@@]\n1@@2@@3@@4@@6") == 16
+    assert string_calculator.add("//[#$%]\n1#$%2#$%3#$%4#$%5") == 15
     
     
 def test_add_multiple_delimiters(string_calculator):

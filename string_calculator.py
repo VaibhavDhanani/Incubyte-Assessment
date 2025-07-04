@@ -6,7 +6,7 @@ class StringCalculator:
     def __init__(self) -> None:
         self.__add_called_count = 0
 
-    def get_called_count(self) -> int:
+    def get_add_called_count(self) -> int:
         return self.__add_called_count
 
     def add(self, numbers: str) -> int:
