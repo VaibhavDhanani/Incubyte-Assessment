@@ -35,3 +35,11 @@ def test_add_handles_custom_delimiter(string_calculator):
     assert string_calculator.add("//;\n1;2;3;4;5;6;7;8;9") == 45
     assert string_calculator.add("//#\n1#2#3#6#5#4") == 21
     assert string_calculator.add("//#\n10") == 10
+    
+    
+def test_add_condition_5(string_calculator):
+    with pytest.raises(ValueError,match="negatives not allowed"):
+        string_calculator.add("1,2,-3")
+        
+    with pytest.raises(ValueError,match="negatives not allowed"):
+        string_calculator.add("//;\n\n1;2;3\n\n\n-4\n5")
