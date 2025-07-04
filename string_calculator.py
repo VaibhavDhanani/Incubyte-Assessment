@@ -1,3 +1,5 @@
+import re
+
 class StringCalculator:
 
     def __init__(self) -> None:
@@ -12,31 +14,36 @@ class StringCalculator:
         if not numbers:
             return 0
 
-        delimiter = ","
+        delimiters = []
+        start = 0
         if numbers.startswith("//"):
             i = 2
-            temp_delimiter = ""
-            
-            if numbers[i] == "[":
-                i += 1
-                while i < len(numbers) and numbers[i] != "]":
-                    temp_delimiter += numbers[i]
+            while i < len(numbers) and numbers[i] != "\n":
+                if numbers[i] == "[":
                     i += 1
-                delimiter = temp_delimiter
-            else:
-                while i < len(numbers) and numbers[i] != "\n":
-                    temp_delimiter += numbers[i]
+                    deli = ""
+                    while numbers[i] != "]":
+                        deli += numbers[i]
+                        i += 1
+                    delimiters.append(deli)
                     i += 1
-                delimiter = temp_delimiter
-                
-            numbers = numbers[i+1:]
-                
-        numbers = numbers.replace("\n", delimiter)
+                else:
+                    deli = numbers[i]
+                    delimiters.append(deli)
+                    i += 1
+                    break  
+            start = i + 1
 
+        else:
+            delimiters = [","]
+                        
+        numbers = numbers[start:]
+        numbers = numbers.replace("\n", delimiters[0])
         
         num = 0
         negative_numbers = []
-        for i in numbers.split(delimiter):
+        patterns = "|".join(map(re.escape, delimiters))
+        for i in re.split(patterns, numbers):
             if i:
                 if int(i) <= 1000:
                     num += int(i)
