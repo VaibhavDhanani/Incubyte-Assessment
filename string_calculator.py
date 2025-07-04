@@ -1,5 +1,6 @@
 import re
 
+
 class StringCalculator:
 
     def __init__(self) -> None:
@@ -31,15 +32,15 @@ class StringCalculator:
                     deli = numbers[i]
                     delimiters.append(deli)
                     i += 1
-                    break  
+                    break
             start = i + 1
 
         else:
             delimiters = [","]
-                        
+
         numbers = numbers[start:]
         numbers = numbers.replace("\n", delimiters[0])
-        
+
         num = 0
         negative_numbers = []
         patterns = "|".join(map(re.escape, delimiters))
