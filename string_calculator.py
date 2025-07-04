@@ -22,7 +22,8 @@ class StringCalculator:
         negative_numbers = []
         for i in numbers.split(delimiter):
             if i:
-                num += int(i)
+                if int(i) <= 1000:
+                    num += int(i)
                 if int(i) < 0:
                     negative_numbers.append(int(i))
 
