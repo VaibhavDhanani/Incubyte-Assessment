@@ -29,3 +29,9 @@ def test_add_unknown_numbers(string_calculator):
 def test_add_handles_newline_characters(string_calculator):
     assert string_calculator.add("1\n2,3\n4,5,6,7,8,9") == 45
     assert string_calculator.add("1\n2\n3\n6\n\n\n5\n4") == 21
+    
+    
+def test_add_handles_custom_delimiter(string_calculator):
+    assert string_calculator.add("//;\n1;2;3;4;5;6;7;8;9") == 45
+    assert string_calculator.add("//#\n1#2#3#6#5#4") == 21
+    assert string_calculator.add("//#\n10") == 10
