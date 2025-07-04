@@ -5,4 +5,6 @@ class StringCalculator:
         if not numbers:
             return 0
         
-        return 0
+        num = int(numbers[0])
+        
+        return num
